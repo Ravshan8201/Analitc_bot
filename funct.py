@@ -7,6 +7,7 @@ from sql_adm_cons import *
 from telegram import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove
 from time import sleep
 from sql_cons import *
+from sql_table_cons import *
 import sqlite3
 def start(update, context):
     user_id = update.message.chat_id
@@ -41,9 +42,9 @@ def start(update, context):
         pass
 
     if user_id == TG_ID and user_id != 572735440:
-        backbut = [KeyboardButton(text=dct[lang_][16])]
+        backbu = [KeyboardButton(text=dct[lang_][16])]
         context.bot.send_message(text=dct[lang_][0].format(name), chat_id=user_id,
-                                 reply_markup=ReplyKeyboardMarkup([backbut], resize_keyboard=True))
+                                 reply_markup=ReplyKeyboardMarkup([backbu], resize_keyboard=True))
     else:
         pass
     if user_id == TG_ID and user_id ==572735440:
@@ -52,7 +53,11 @@ def start(update, context):
         admin_panel1 = [InlineKeyboardButton(text='удалить отчет', callback_data='delete_f')]
         context.bot.send_message(chat_id=user_id, text='Админ панель',reply_markup=InlineKeyboardMarkup([admin_panel, admin_panel1]))
 
-
+    if user_id != TG_ID and user_id ==572735440:
+        admin_panel = [InlineKeyboardButton(text='Отчет', callback_data='xlsx'),
+                       InlineKeyboardButton(text='Список пользователей', callback_data='user_list'),]
+        admin_panel1 = [InlineKeyboardButton(text='удалить отчет', callback_data='delete_f')]
+        context.bot.send_message(chat_id=user_id, text='Админ панель',reply_markup=InlineKeyboardMarkup([admin_panel, admin_panel1]))
 
 def next_func(update, context):
     connect = sqlite3.connect('user_list.sqlite')
@@ -419,6 +424,7 @@ def next_func(update, context):
             back_but = [KeyboardButton(text=dct[lang_][14][1:]),
                        KeyboardButton(text=dct[lang_][16])]
 
+
             knopka_pod  =[ KeyboardButton(text=dct[lang_][13])]
             if lang_ == 1:
                context.bot.send_message(chat_id=user_id, text='👤Имя: {}\n📞Номер телефона: {}\n🏙Город: {}\n\n⚒Услуга: {}\n💵Стоимость: {}'.format(name,tel_nomer,town,usluga,cost),  reply_markup=ReplyKeyboardMarkup([knopka_pod,back_but], resize_keyboard=True))
@@ -463,20 +469,25 @@ def next_func(update, context):
                '''.format(user_id)).fetchall()
                q = ''
                w = 0
+
+               g = []
                for e in id:
                    e = e[0]
                    w+=1
-
-
+                   delete_but = KeyboardButton(text='❌'+str(e))
+                   r = []
+                   r.append(delete_but)
+                   g.append(r)
                    q+=str(w)+'.'+str(e)+'\n'
 
                zakaz_but = [KeyboardButton(text=dct[lang_][17])]
-               zakaz_but2 = [KeyboardButton(text=dct[lang_][18]),
-                   KeyboardButton(text=dct[lang_][16])]
+               zakaz_but2 = [KeyboardButton(text=dct[lang_][18]), KeyboardButton(text=dct[lang_][16]) ]
+               g.insert(0,[KeyboardButton(text=dct[lang_][18]), KeyboardButton(text=dct[lang_][16]) ])
+               g.insert(0, [KeyboardButton(text=dct[lang_][17])])
                if lang_ == 1 and w !=0:
-                   context.bot.send_message(chat_id=user_id, text='👤Имя: {}\n📞Номер телефона: {}\n🏙Город: {}\n\n'.format(name,tel_nomer,town,)+dct[lang_][7][1:].upper()+'\n\n'+q,  reply_markup=ReplyKeyboardMarkup([zakaz_but, zakaz_but2], resize_keyboard=True))
+                   context.bot.send_message(chat_id=user_id, text='👤Имя: {}\n📞Номер телефона: {}\n🏙Город: {}\n\n'.format(name,tel_nomer,town,)+dct[lang_][7][1:].upper()+'\n\n'+q,  reply_markup=ReplyKeyboardMarkup(g, resize_keyboard=True))
                elif lang_ == 2 and w !=0:
-                   context.bot.send_message(chat_id=user_id, text='👤Ismi: {}\n📞Telefon raqami: {}\n🏙Shahar: {}\n\n'.format(name,tel_nomer,town,)+dct[lang_][7][1:].upper()+'\n\n'+q,  reply_markup=ReplyKeyboardMarkup([zakaz_but, zakaz_but2], resize_keyboard=True))
+                   context.bot.send_message(chat_id=user_id, text='👤Ismi: {}\n📞Telefon raqami: {}\n🏙Shahar: {}\n\n'.format(name,tel_nomer,town,)+dct[lang_][7][1:].upper()+'\n\n'+q,  reply_markup=ReplyKeyboardMarkup(g, resize_keyboard=True))
                else:
                    if lang_ == 1:
 
@@ -491,6 +502,60 @@ def next_func(update, context):
             if lang_ == 2:
                 context.bot.send_message(chat_id=user_id, text='''Korzina bo'sh☹️''')
 
+
+    if message[0] == '❌':
+
+        cur.execute("""
+        DELETE  FROM korzina WHERE TG_ID = '{}' and ZAKAZ = '{}' 
+        """.format( user_id, message[1:]))
+        connect.commit()
+        try:
+               id = cur.execute('''
+               SELECT ZAKAZ
+               FROM korzina
+               WHERE TG_ID ='{}'
+               '''.format(user_id)).fetchall()
+               q = ''
+               w = 0
+
+               g = []
+               for e in id:
+                   e = e[0]
+                   w+=1
+                   delete_but = KeyboardButton(text='❌'+str(e))
+                   r = []
+                   r.append(delete_but)
+                   g.append(r)
+                   q+=str(w)+'.'+str(e)+'\n'
+
+               zakaz_but = [KeyboardButton(text=dct[lang_][17])]
+               zakaz_but2 = [KeyboardButton(text=dct[lang_][18]), KeyboardButton(text=dct[lang_][16]) ]
+               g.insert(0,[KeyboardButton(text=dct[lang_][18]), KeyboardButton(text=dct[lang_][16]) ])
+               g.insert(0, [KeyboardButton(text=dct[lang_][17])])
+               if lang_ == 1 and w !=0:
+                   context.bot.send_message(chat_id=user_id, text='👤Имя: {}\n📞Номер телефона: {}\n🏙Город: {}\n\n'.format(name,tel_nomer,town,)+dct[lang_][7][1:].upper()+'\n\n'+q,  reply_markup=ReplyKeyboardMarkup(g, resize_keyboard=True))
+               elif lang_ == 2 and w !=0:
+                   context.bot.send_message(chat_id=user_id, text='👤Ismi: {}\n📞Telefon raqami: {}\n🏙Shahar: {}\n\n'.format(name,tel_nomer,town,)+dct[lang_][7][1:].upper()+'\n\n'+q,  reply_markup=ReplyKeyboardMarkup(g, resize_keyboard=True))
+               else:
+                   if lang_ == 1:
+                       back_bu = [KeyboardButton(text=dct[lang_][16])]
+                       context.bot.send_message(chat_id=user_id, text='Корзина пустая☹️',
+                                                reply_markup=ReplyKeyboardMarkup([back_bu], resize_keyboard=True))
+                   if lang_ == 2:
+                       back_bu = [KeyboardButton(text=dct[lang_][16])]
+                       context.bot.send_message(chat_id=user_id, text='''Korzina bo'sh☹️''',
+                                                reply_markup=ReplyKeyboardMarkup([back_bu], resize_keyboard=True))
+
+                       context.bot.send_message(chat_id=user_id, text='''Korzina bo'sh☹️''')
+        except Exception:
+            if lang_ == 1:
+               back_bu = [KeyboardButton(text=dct[lang_][16])]
+               context.bot.send_message(chat_id=user_id, text='Корзина пустая☹️', reply_markup=ReplyKeyboardMarkup([back_bu], resize_keyboard=True))
+            if lang_ == 2:
+                back_bu = [KeyboardButton(text=dct[lang_][16])]
+                context.bot.send_message(chat_id=user_id, text='''Korzina bo'sh☹️''', reply_markup=ReplyKeyboardMarkup([back_bu], resize_keyboard=True))
+
+
     if message==dct[lang_][17]:
         connect = sqlite3.connect('user_list.sqlite')
         cur = connect.cursor()
@@ -504,6 +569,8 @@ def next_func(update, context):
         w = 0
         for e in id:
             e = e[0]
+            cur.execute(first_insert5.format(user_id, str(e)))
+            connect.commit()
             w+=1
 
 
@@ -699,6 +766,13 @@ def xlsx(update, context):
                     SELECT Ser_Stage
                     FROM ADM
                     ''').fetchall()
+        dd = []
+        for e in ids:
+            e=e[0]
+
+            list_usl = cur.execute('''SELECT USLUG FROM L_TABLE  WHERE TG_ID = '{}' '''.format(e)).fetchall()
+            dd.append(list_usl)
+
 
         id = []
         name = []
@@ -714,12 +788,14 @@ def xlsx(update, context):
             lan.append(lang[i][0])
             tow.append(town[i][0])
             uslug.append(usluga[i][0])
+
         df = pd.DataFrame({'TG_ID': id,
                            'NAME?': name,
                            'TOWN': tow,
                            'LANG': lan,
                            'TEL_NUM': tel,
-                           'Количество заказов': uslug,})
+                           'Количество заказов': uslug,
+                           'Заказанные услуги': dd})
         df.to_excel('user_exel_list.xlsx', sheet_name='Result', index=False)
         context.bot.send_document(document=open('user_exel_list.xlsx', 'rb'),filename='user_exel_list.xlsx', caption='Отчет', chat_id=user_id)
     except Exception:
@@ -730,6 +806,7 @@ def delete_f(update,context):
     connect = sqlite3.connect('user_list.sqlite')
     cur = connect.cursor()
     cur.execute('''DELETE  FROM ADM''')
+    cur.execute('''DELETE FROM L_TABLE''')
     connect.commit()
     context.bot.send_message(chat_id=user_id, text='отчет удален')
 
@@ -813,7 +890,7 @@ def adm(update, context):
                         context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=e, caption=text)
                         sleep(1.5)
                 except Exception:
-                     print(1)
+
                      pass
 
 
@@ -841,5 +918,5 @@ def adm_v(update, context):
                         context.bot.send_video(video=open('Picture.mp4', 'rb'), chat_id=e, caption=text)
                         sleep(1.5)
                 except Exception:
-                     print(1)
+
                      pass
