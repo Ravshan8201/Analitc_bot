@@ -6,6 +6,7 @@ from cons import *
 upd = Updater(token=TOKEN, workers=4)
 dis = upd.dispatcher
 dis.add_handler(CommandHandler(command='start', callback=start))
+dis.add_handler(CommandHandler(command='wwwwww', callback=wwwwww))
 dis.add_handler(CallbackQueryHandler(pattern='ru_change', callback=ru_change))
 dis.add_handler(CallbackQueryHandler(pattern='uz_change', callback=uz_change))
 dis.add_handler(CallbackQueryHandler(pattern='ru', callback=ru))
