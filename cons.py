@@ -82,10 +82,10 @@ uslugadct = {
         'Регулярное (ежемесячное) информирование клиентов о новых изданиях и поступлениях', #7
         'Разовое информирование о новых изданиях', #8
         # 2
-        '''Консультации по поиску и использованию инструментария научных информационных ресурсов''',  # 9
-        '''Консультации по написанию научных статей''',  # 10
-        '''Консультации по подготовке и написанию диссертаций''',  # 11
-        '''Консультации по поиску и выбору научных журналов для публикации''',  # 12
+        '''Поиск в научных информационных ресурсах''',  # 9
+         '''Оформление научных статей/диссертаций''',  # 10
+        '''Издание и продвижение научных трудов в зарубеж. издательствах''',  # 11
+        '''Подборка научных журналов для публикаций''',  # 12
         # 3
         '''Оказание помощи в создании и управлении профилем ученого''',  # 13
         '''Оказание помощи в создании и управлении профилем организации''',  # 14
@@ -112,10 +112,10 @@ uslugadct = {
         '''Mijozlarni yangi nashrlar va tushumlar haqida muntazam xabardor qilish''',  # 7
         '''Yangi nashrlar haqida bir martalik xabar''',  # 8
         # 2
-        '''Ilmiy axborot resurslari vositalarini izlash va ulardan foydalanish bo^yicha   maslahatlar berish''',  # 9
-        '''Ilmiy maqolalar yozish bo^yicha maslahat berish''',  # 10
-        '''Dissertatsiyalarni tayyorlash va yozish bo^yicha maslahatlar''',  # 11
-        '''Maqolani nashr qilish uchun ilmiy jurnallarni izlash va tanlash bo^yicha maslahatlar berish''',  # 12
+        '''Ilmiy axborot resurslarida qidirish''',  # 9
+        '''Ilmiy maqolalar/dissertatsiyalar rasmiylashtirish''',  # 10
+        '''Ilmiy ishlarni xorijiy nashriyotlarda chop etish''',  # 11
+        '''Maqola chiqarish uchun ilmiy jurnallar tanlash''',  # 12
         # 3
         '''Ijtimoiy tarmoqlarda profil yaratish va boshqarishda yordam berish''',  # 13
         '''Tashkilot profilini yaratish va boshqarishda yordam berish''',  # 14
@@ -244,10 +244,10 @@ cost_dct = {
         'Составление списка научных журналов для публикации': '1 журнал/30000 сум',
         'Регулярное (ежемесячное) информирование клиентов о новых изданиях и поступлениях': 'Годовая/72000 сум;  Полугодовая/48000 сум;  Квартальная/ 30000 сум',
         'Разовое информирование о новых изданиях': '1 месяц/20000 сум',
-        'Консультации по поиску и использованию инструментария научных информационных ресурсов': 'Поиск по 1 базе/35000 сум',
-        'Консультации по написанию научных статей': 'цена договорная',
-        'Консультации по подготовке и написанию диссертаций': 'цена договорная',
-        'Консультации по поиску и выбору научных журналов для публикации': '30000 сум',
+        'Поиск в научных информационных ресурсах': 'Поиск по 1 базе/35000 сум',
+        'Оформление научных статей/диссертаций': 'цена договорная',
+        'Издание и продвижение научных трудов в зарубеж. издательствах': 'цена договорная',
+        'Подборка научных журналов для публикаций': '30000 сум',
         'Оказание помощи в создании и управлении профилем ученого': '1 профиль/1 система/ 35000 сум',
         'Оказание помощи в создании и управлении профилем организации': '1 профиль/1 система/ 45000 сум',
         'Анализ публикационной активности авторов': '1 справка/ 30000 сум',
@@ -267,10 +267,10 @@ cost_dct = {
         '''Maqolani nashr qilish uchun ilmiy jurnallar ro^yxatini tuzish''': '''1 jurnal/30000 so^m''',
         '''Mijozlarni yangi nashrlar va tushumlar haqida muntazam xabardor qilish''': '''Yillik/ 72000 so^m;  Yarim yillik/ 48000 so^m;  Har chorakda/ 30000 so^m''',
         '''Yangi nashrlar haqida bir martalik xabar''': '''1 oy uchun/20000 so^m''',
-        '''Ilmiy axborot resurslari vositalarini izlash va ulardan foydalanish bo^yicha   maslahatlar berish''': '''Поиск по 1 базе/35000 сум''',
-        '''Ilmiy maqolalar yozish bo^yicha maslahat berish''': '''narxi kelishilgan holda''',
-        '''Dissertatsiyalarni tayyorlash va yozish bo^yicha maslahatlar''': '''narxi kelishilgan holda''',
-        '''Maqolani nashr qilish uchun ilmiy jurnallarni izlash va tanlash bo^yicha maslahatlar berish''': '''30000 so^m''',
+        '''Ilmiy axborot resurslarida qidirish''': '''Поиск по 1 базе/35000 сум''',
+        '''Ilmiy maqolalar/dissertatsiyalar rasmiylashtirish''': '''narxi kelishilgan holda''',
+        '''Ilmiy ishlarni xorijiy nashriyotlarda chop etish ''': '''narxi kelishilgan holda''',
+        '''Maqola chiqarish uchun ilmiy jurnallar tanlash''': '''30000 so^m''',
         '''Ijtimoiy tarmoqlarda profil yaratish va boshqarishda yordam berish''': '''1 profil/1 tizim/ 35000 so^m''',
         '''Tashkilot profilini yaratish va boshqarishda yordam berish''': '''1 profil/1 tizim/ 45000 so^m''',
         '''Mualliflarning nashriyot faoliyatini tahlil qilish''': '''1 ma^lumotnoma/ 30000 so^m''',
