@@ -51,7 +51,7 @@ def start(update, context):
     else:
         pass
     
-    if user_id == TG_ID and user_id != 572735440  and lang_ !=1 or  user_id == TG_ID and user_id != 572735440  and lang_ !=2:
+    if user_id == TG_ID and user_id != 572735440  and lang_ !=1 and lang_ !=2  or  user_id == TG_ID and user_id != 572735440  and lang_ !=2 and lang_ !=1:
             knopka_lang = [
                 InlineKeyboardButton(text='RU🇷🇺', callback_data='ru_change'),
                 InlineKeyboardButton(text='UZ🇺🇿', callback_data='uz_change')
