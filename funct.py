@@ -84,7 +84,7 @@ def next_func(update, context):
     message = str(message)
     stage_ = stage_[0][0]
     try:
-    lang_ = lang_[0][0]
+        lang_ = lang_[0][0]
     except Exception:
             knopka_lang = [
                 InlineKeyboardButton(text='RU🇷🇺', callback_data='ru_change'),
