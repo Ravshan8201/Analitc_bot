@@ -44,7 +44,7 @@ def start(update, context):
     else:
         pass
 
-    if user_id == TG_ID and user_id != 572735440:
+    if user_id == TG_ID and user_id != 572735440 and lang_ ==1 or  user_id == TG_ID and user_id != 572735440 and lang_ ==2:
         backbu = [KeyboardButton(text=dct[lang_][16])]
         context.bot.send_message(text=dct[lang_][0].format(name), chat_id=user_id,
                                  reply_markup=ReplyKeyboardMarkup([backbu], resize_keyboard=True))
