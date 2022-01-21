@@ -83,8 +83,15 @@ def next_func(update, context):
     message = update.message.text
     message = str(message)
     stage_ = stage_[0][0]
+    try:
     lang_ = lang_[0][0]
-
+    except Exception:
+            knopka_lang = [
+                InlineKeyboardButton(text='RU🇷🇺', callback_data='ru_change'),
+                InlineKeyboardButton(text='UZ🇺🇿', callback_data='uz_change')
+            ]
+            context.bot.send_message(chat_id=user_id, text='Выберите язык:\nTilni tanglang:',
+                                  reply_markup=InlineKeyboardMarkup([knopka_lang]))
     if message.lower() == 'davom etish>>>' and stage_ == 2 or message.lower() == 'далее>>>' and stage_ == 2:
         context.bot.send_message(chat_id=user_id, text=dct[lang_][0].format(f_name))
 
