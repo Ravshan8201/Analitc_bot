@@ -173,7 +173,7 @@ def next_func(update, context):
         pass
     tel_nomer = cur.execute(phone_select.format(user_id)).fetchall()
     tel_nomer = tel_nomer[0][0]
-    if stage_ ==  5 and message == dct[lang_][16] and int(tel_nomer) > 0 or stage_ ==  6.1 and message == dct[lang_][14] or stage_ ==  6.4 and message == dct[lang_][16] or message == dct[lang_][16] or stage_==555:
+    if stage_ ==  5 and message == dct[lang_][16]  or stage_ ==  6.1 and message == dct[lang_][14] or stage_ ==  6.4 and message == dct[lang_][16] or message == dct[lang_][16] or stage_==555:
 
         main_button = [KeyboardButton(text=maindct[lang_][0]),
                        KeyboardButton(text=dct[lang_][7])]
