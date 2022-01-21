@@ -50,6 +50,16 @@ def start(update, context):
                                  reply_markup=ReplyKeyboardMarkup([backbu], resize_keyboard=True))
     else:
         pass
+    
+    if user_id == TG_ID and user_id != 572735440  and lang_ !=1 or  user_id == TG_ID and user_id != 572735440  and lang_ !=2:
+            knopka_lang = [
+                InlineKeyboardButton(text='RU🇷🇺', callback_data='ru_change'),
+                InlineKeyboardButton(text='UZ🇺🇿', callback_data='uz_change')
+            ]
+            context.bot.send_message(chat_id=user_id, text='Выберите язык:\nTilni tanglang:',
+                                  reply_markup=InlineKeyboardMarkup([knopka_lang]))
+    else:
+        pass
     if user_id == TG_ID and user_id ==572735440:
         admin_panel = [InlineKeyboardButton(text='Отчет', callback_data='xlsx'),
                        InlineKeyboardButton(text='Список пользователей', callback_data='user_list'),]
