@@ -82,8 +82,11 @@ def next_func(update, context):
     connect.commit()
     message = update.message.text
     message = str(message)
-    stage_ = stage_[0][0]
+
+ 
+
     try:
+        stage_ = stage_[0][0]
         lang_ = lang_[0][0]
     except Exception:
             knopka_lang = [
@@ -114,8 +117,10 @@ def next_func(update, context):
     else:
         pass
     stag_ = cur.execute(stage.format(user_id)).fetchall()
-    stag_ = stag_[0][0]
-
+    try:
+        stag_ = stag_[0][0]
+    except Exception:
+        pass
     if stag_==3.5:
         obl_but1 =[KeyboardButton(text=obldct[lang_][0]),
                    KeyboardButton(text=obldct[lang_][1])]
@@ -145,9 +150,13 @@ def next_func(update, context):
         pass
 
     sta_ = cur.execute(stage.format(user_id)).fetchall()
-    sta_ = sta_[0][0]
+
     name = cur.execute(name_select.format(user_id)).fetchall()
-    name = name[0][0]
+    try:
+        name = name[0][0]
+        sta_ = sta_[0][0]
+    except Exception:
+        pass
     if sta_ == 3.8 and message != name:
         cur.execute(place_upd.format('{}', user_id).format(message))
         connect.commit()
@@ -157,8 +166,10 @@ def next_func(update, context):
        pass
 
     st_ = cur.execute(stage.format(user_id)).fetchall()
-    st_ = st_[0][0]
-
+    try:
+        st_ = st_[0][0]
+    except Exception:
+        pass
     if st_ == 4 :
         name = cur.execute(name_select.format(user_id)).fetchall()
         name = name[0][0]
@@ -172,7 +183,10 @@ def next_func(update, context):
     else:
         pass
     tel_nomer = cur.execute(phone_select.format(user_id)).fetchall()
-    tel_nomer = tel_nomer[0][0]
+    try:
+        tel_nomer = tel_nomer[0][0]
+    except Exception:
+        pass
     if stage_ ==  5 and message == dct[lang_][16]  or stage_ ==  6.1 and message == dct[lang_][14] or stage_ ==  6.4 and message == dct[lang_][16] or message == dct[lang_][16] or stage_==555:
 
         main_button = [KeyboardButton(text=maindct[lang_][0]),
@@ -318,9 +332,15 @@ def next_func(update, context):
     else:
         pass
     tel_nomer = cur.execute(phone_select.format(user_id)).fetchall()
-    tel_nomer = tel_nomer[0][0]
+    try:
+         tel_nomer = tel_nomer[0][0]
+    except Exception:
+        pass
     town  = cur.execute(place_select.format(user_id)).fetchall()
-    town = town[0][0]
+    try:
+         town = town[0][0]
+    except Exception:
+        pass
     for d in otzivdct[lang_][:-1]:
         if message == d and stage_ == 6.3:
             context.bot.send_message(chat_id=-697834775,
@@ -363,7 +383,10 @@ def next_func(update, context):
 
     if message == '📞Номер телефона' and stage_ == 6.4 or message == 'Telefon nomer☎️' and stage_ == 6.4:
            num_ = cur.execute(phone_select.format(user_id)).fetchall()
-           num_ = num_[0][0]
+           try:
+                num_ = num_[0][0]
+           except Exception:
+                pass
            cur.execute(stagee.format('{}', user_id).format(6.4))
            connect.commit()
            stage_41 = cur.execute(stage.format(user_id)).fetchall()
@@ -408,8 +431,10 @@ def next_func(update, context):
         pass
 
     sa_ = cur.execute(stage.format(user_id)).fetchall()
-    sa_ = sa_[0][0]
-
+    try:
+        sa_ = sa_[0][0]
+    except Exception:
+        pass
     mesage = update.message.text
     if mesage != dct[lang_][8] and sa_ == 6.45:
         cur.execute(place_upd.format('{}', user_id).format(message))
@@ -426,15 +451,19 @@ def next_func(update, context):
 
 # ФУНКЦИИИИИИИ  ОТЕПРАВКА Админа
     name = cur.execute(name_select.format(user_id)).fetchall()
-    name = name[0][0]
     tel_nomer = cur.execute(phone_select.format(user_id)).fetchall()
-    tel_nomer = tel_nomer[0][0]
+
     town  = cur.execute(place_select.format(user_id)).fetchall()
-    town = town[0][0]
+
     mesage = update.message.text
     s_ = cur.execute(stage.format(user_id)).fetchall()
-    s_ = s_[0][0]
-
+    try:
+        town = town[0][0]
+        name = name[0][0]
+        tel_nomer = tel_nomer[0][0]
+        s_ = s_[0][0]
+    except Exception:
+        pass
     for e in uslugadct[lang_][3:]:
         if  mesage == e and 6.1<stage_<6.15 :
             usluga = mesage
@@ -460,7 +489,10 @@ def next_func(update, context):
 
 # ФУНКЦИИИИИИИ  ОТЕПРАВКА Админа ТУГАДИИИИИИИИИИИИИИИИИИИИИИИИИИИИИИ
     zakaz = cur.execute(ser_select.format(user_id)).fetchall()
-    zakaz = zakaz[0][0]
+    try:
+         zakaz = zakaz[0][0]
+    except Exception:
+            pass
 # KORZINAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA     STAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRTTTTTTTTTTTTTT
     if message == dct[lang_][13] and 6.1<stage_<6.15 :
         tg_ = cur.execute(tg_id_select.format(user_id)).fetchall()
@@ -614,8 +646,10 @@ def next_func(update, context):
             connect.commit()
         if TG_ID == user_id:
             f = cur.execute(s_select.format(user_id)).fetchall()
-            f = f[0][0]
-
+            try:
+                f = f[0][0]
+            except Exception:
+                  pass
             f = f+w
             cur.execute(s_upd.format(f, user_id))
             connect.commit()
@@ -629,7 +663,7 @@ def next_func(update, context):
         if lang_ == 2:
             back_ = [KeyboardButton(text=dct[lang_][16])]
             context.bot.send_message(chat_id=user_id, text='Buyurtmangiz qabul qilindi',  reply_markup=ReplyKeyboardMarkup([back_], resize_keyboard=True))
-
+ 
 # KORZINAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA     STAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRTTTTTTTTTTTTTT
 
 # Udalit
@@ -702,9 +736,12 @@ def get_contac(update, context):
     town  = cur.execute(place_select.format(user_id)).fetchall()
     lang_ = cur.execute(lang_select.format(user_id)).fetchall()
     conn.commit()
-    name=name[0][0]
-    town = town[0][0]
-    lang_ = lang_[0][0]
+    try:
+        name=name[0][0]
+        town = town[0][0]
+        lang_ = lang_[0][0]
+    except Exception:
+            pass
     cur.execute(first_insert4.format(user_id, lang_, name, num, town))
     conn.commit()
     main_button = [KeyboardButton(text=maindct[lang_][0]),
@@ -727,12 +764,15 @@ def podver(update, context):
     usluga = cur.execute(ser_select.format(user_id)).fetchall()
     lang_ = cur.execute(lang_select.format(user_id)).fetchall()
     connect.commit()
-    lang_ = lang_[0][0]
-    usluga = usluga[0][0]
-    s_ = s_[0][0]
-    town = town[0][0]
-    tel_nomer = tel_nomer[0][0]
-    name = name[0][0]
+    try:
+            lang_ = lang_[0][0]
+            usluga = usluga[0][0]
+            s_ = s_[0][0]
+            town = town[0][0]
+            tel_nomer = tel_nomer[0][0]
+            name = name[0][0]
+    except Exception:
+            pass
     connect.commit()
     cost = cost_dct[lang_][usluga]
     if user_id ==957531477:
