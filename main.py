@@ -20,5 +20,5 @@ dis.add_handler(MessageHandler(Filters.contact, get_contac))
 dis.add_handler(MessageHandler(Filters.photo, adm))
 dis.add_handler(MessageHandler(Filters.video, adm_v))
 
-# upd.start_polling(drop_pending_updates=True)
-upd.idle()
+upd.start_polling()
+# upd.idle()
