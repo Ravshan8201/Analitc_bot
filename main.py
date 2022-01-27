@@ -19,19 +19,20 @@ dis.add_handler(MessageHandler(Filters.text, next_func))
 dis.add_handler(MessageHandler(Filters.contact, get_contac))
 dis.add_handler(MessageHandler(Filters.photo, adm))
 dis.add_handler(MessageHandler(Filters.video, adm_v))
-def error_callback(bot, update, error):
-    try:
-        raise error
-    except BadRequest:
-        # handle malformed requests - read more below!
-        print('Same message')
+class GracefulKiller:
+  kill_now = False
+  def __init__(self):
+    signal.signal(signal.SIGINT, self.exit_gracefully)
+    signal.signal(signal.SIGTERM, self.exit_gracefully)
 
+  def exit_gracefully(self, *args):
+    self.kill_now = True
 
-def error(bot, update, error):
-    if not (error.message == "Message is not modified"):
-        logger.warning('Update "%s" caused error "%s"' % (update, error))
-
-    upd.dispatcher.logger.addFilter(
-        (lambda s: not s.msg.endswith('A TelegramError was raised while processing the Update')))
-
+if __name__ == '__main__':
+  killer = GracefulKiller()
+  while not killer.kill_now:
+    time.sleep(1)
+    print("doing something in a loop ...")
+   
+  print("End of the program. I was killed gracefully :)")
 upd.start_polling(drop_pending_updates=True)
